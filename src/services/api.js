@@ -2,7 +2,7 @@ export async function getCategories(url) {
   // implement here
   fetch(url)
   .then((data) => data.json())
-  .then((dataJson) => { return dataJson; });
+  .then((dataJson) => dataJson);
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
@@ -10,5 +10,5 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const urlCategories = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
   fetch(urlCategories)
   .then((data) => data.json())
-  .then((dataJson) => { return dataJson.results;});
+  .then((dataJson) => dataJson.results);
 }
