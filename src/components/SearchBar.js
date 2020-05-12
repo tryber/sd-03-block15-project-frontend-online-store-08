@@ -8,7 +8,9 @@ class SearchBar extends React.Component {
   }
 
   handleChange(newValue) {
+    const { onClick } = this.props;
     this.setState({ searchText: newValue });
+    onClick(newValue);
   }
 
   render() {

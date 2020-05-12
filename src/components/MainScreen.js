@@ -5,14 +5,25 @@ class MainScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { firstTime: true };
+    this.state = {
+      firstTime: true,
+      searchText: '',
+    }
+
+    this.searchText = this.searchText.bind(this);
+  }
+
+  searchText(searchText) {
+    this.setState({ searchText });
   }
 
   render() {
-    const { firstTime } = this.state;
+    const { firstTime, searchText } = this.state;
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar
+          onClick={this.searchText}
+        />
         {firstTime && (
           <span
             data-testid="home-initial-message"
@@ -20,6 +31,7 @@ class MainScreen extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
         )}
+        <p>{searchText}</p>
       </div>
     );
   }
