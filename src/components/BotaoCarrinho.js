@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 class BotaoCarrinho extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      itemSalvo: [],
-    };
+    this.state = { itemSalvo: [], };
   }
 
   render() {
