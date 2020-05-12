@@ -9,7 +9,6 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={MainScreen} />
-          <Route />
         </Switch>
       </Router>
     </div>
