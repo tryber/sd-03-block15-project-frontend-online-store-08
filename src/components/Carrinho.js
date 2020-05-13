@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import HeaderCarrinho from './HeaderCarrinho';
 import CarrinhoVazio from './CarrinhoVazio';
 import './Carrinho.css';
@@ -17,17 +16,6 @@ class Carrinho extends Component {
     this.carregaCarrinhoVazio = this.carregaCarrinhoVazio.bind(this);
   }
 
-  componentDidMount() {
-    this.carrinhoMount();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { qtdeItensCarrinho, atualizaSoma } = this.state;
-    if ((qtdeItensCarrinho === 0) && qtdeItensCarrinho !== prevState.qtdeItensCarrinho) {
-      this.carregaCarrinhoVazio();
-    }
-  }
-
   carregaCarrinhoVazio() {
     this.setState({
       carrinhoVazio: true,
@@ -42,7 +30,7 @@ class Carrinho extends Component {
   }
 
   render() {
-    const { itensCarrinho, carrinhoVazio, valorTotal } = this.state;
+    const { carrinhoVazio } = this.state;
 
     if (carrinhoVazio) return <CarrinhoVazio />;
 
