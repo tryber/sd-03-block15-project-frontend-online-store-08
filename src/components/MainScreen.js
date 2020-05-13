@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import Categories from './Categories';
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -12,14 +13,19 @@ class MainScreen extends React.Component {
     const { firstTime } = this.state;
     return (
       <div className="App">
-        <SearchBar />
-        {firstTime && (
-          <span
-            data-testid="home-initial-message"
-          >
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </span>
-        )}
+        <div>
+          <Categories />
+        </div>
+        <div>
+          <SearchBar />
+          {firstTime && (
+            <span
+              data-testid="home-initial-message"
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </span>
+          )}
+        </div>
       </div>
     );
   }
