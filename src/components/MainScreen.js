@@ -1,13 +1,14 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
-import query from '../__mocks__/query';
+import * as Api from '../services/api';
 
 class MainScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      categoryId: '',
       firstTime: true,
       products: [],
       searchText: '',
@@ -16,12 +17,16 @@ class MainScreen extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ products: query.results });
+  searchApi(categoryId, Query) {
+    Api.getProductsFromCategoryAndQuery(categoryId, Query)
+      .then((result) => this.setState({ products: result.results }));
   }
 
-  handleSearch(searchText) {
-    this.setState({ searchText });
+  handleSearch(text) {
+    const { categoryId, searchText } = this.state;
+
+    this.setState({ searchText: text });
+    this.searchApi(categoryId, searchText);
   }
 
   render() {
