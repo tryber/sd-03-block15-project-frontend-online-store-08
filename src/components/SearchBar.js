@@ -25,7 +25,7 @@ class SearchBar extends React.Component {
           onChange={(event) => this.handleChange(event.target.value)}
         />
         <button
-          data-test-id="query-button"
+          data-testid="query-button"
           type="button"
           onClick={() => callback(searchText)}
         >
