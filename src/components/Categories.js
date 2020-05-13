@@ -13,12 +13,12 @@ class Categories extends React.Component {
 
   componentDidMount() {
     api.getCategories()
-      .then(
-        (data) => this.setState({
-          categories: [...data],
-          done: true,
-        }),
-      );
+    .then(
+      (data) => this.setState({
+        categories: [...data],
+        done: true,
+      }),
+    );
   }
 
   render() {

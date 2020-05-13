@@ -36,7 +36,6 @@ class MainScreen extends React.Component {
     return (
       <div className="App">
         <SearchBar callback={this.handleSearch} />
-        <Categories />
         {firstTime && (
           <span
             data-testid="home-initial-message"
@@ -45,6 +44,19 @@ class MainScreen extends React.Component {
           </span>
         )}
         <ProductList products={products} />
+        <div>
+          <Categories />
+        </div>
+        <div>
+          <SearchBar />
+          {firstTime && (
+            <span
+              data-testid="home-initial-message"
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </span>
+          )}
+        </div>
       </div>
     );
   }
