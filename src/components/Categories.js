@@ -15,9 +15,9 @@ class Categories extends React.Component {
     api.getCategories()
     .then(
       (data) => this.setState({
-        categories : [...data],
+        categories: [...data],
         done: true,
-      })
+      }),
     );
   }
 
