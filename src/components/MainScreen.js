@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import Categories from './Categories';
 import ProductList from './ProductList';
 import * as Api from '../services/api';
 
@@ -43,6 +44,19 @@ class MainScreen extends React.Component {
           </span>
         )}
         <ProductList products={products} />
+        <div>
+          <Categories />
+        </div>
+        <div>
+          <SearchBar />
+          {firstTime && (
+            <span
+              data-testid="home-initial-message"
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </span>
+          )}
+        </div>
       </div>
     );
   }
