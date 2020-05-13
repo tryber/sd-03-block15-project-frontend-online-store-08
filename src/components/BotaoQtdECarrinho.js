@@ -6,9 +6,7 @@ import imgCarrinho from '../images/carrinho-aberto-120px.png';
 class BotaoQtdECarrinho extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      qtdeNoCarrinho: 0,
-    };
+    this.state = { qtdeNoCarrinho: 0 };
   }
 
   componentDidMount() {
@@ -32,9 +30,7 @@ class BotaoQtdECarrinho extends Component {
   }
 
   funcaoproCCUpdate() {
-    this.setState({
-      qtdeNoCarrinho: this.props.itensNoCarrinho,
-    });
+    this.setState({ qtdeNoCarrinho: this.props.itensNoCarrinho });
   }
 
   render() {
@@ -49,7 +45,5 @@ class BotaoQtdECarrinho extends Component {
     );
   }
 }
-BotaoQtdECarrinho.propTypes = {
-  itensNoCarrinho: PropTypes.number.isRequired,
-};
+BotaoQtdECarrinho.propTypes = { itensNoCarrinho: PropTypes.number.isRequired };
 export default BotaoQtdECarrinho;

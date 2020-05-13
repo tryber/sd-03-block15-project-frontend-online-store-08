@@ -17,16 +17,12 @@ class Carrinho extends Component {
   }
 
   carregaCarrinhoVazio() {
-    this.setState({
-      carrinhoVazio: true,
-    });
+    this.setState({ carrinhoVazio: true });
   }
 
   testaCarrinhoVazio() {
     const { qtdeItensCarrinho } = this.state;
-    this.setState(() => ({
-      qtdeItensCarrinho: qtdeItensCarrinho - 1,
-    }));
+    this.setState(() => ({ qtdeItensCarrinho: qtdeItensCarrinho - 1 }));
   }
 
   render() {
