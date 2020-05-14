@@ -24,6 +24,9 @@ class ProductDetail extends Component {
             {state.condition}
           </p>
         </div>
+        <div>
+          <input type="textArea" />
+        </div>
       </div>
     );
   }
