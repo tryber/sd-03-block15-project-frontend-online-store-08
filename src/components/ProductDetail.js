@@ -9,8 +9,9 @@ class ProductDetail extends Component {
     return (
       <div>
         <div>
-          <h3>
+          <h3 data-testid="product-detail-name">
             {state.title}
+            <br />
             {`R$ ${state.price}`}
           </h3>
         </div>
