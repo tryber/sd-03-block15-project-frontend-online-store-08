@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import StarRating from './StarRating';
 class ProductDetail extends Component {
   render() {
     const { location: { state } } = this.props;
@@ -23,6 +23,10 @@ class ProductDetail extends Component {
           <p>
             {state.condition}
           </p>
+        </div>
+        <div>
+          <StarRating />
+          <input type="textArea" data-testid="product-detail-evaluation" />
         </div>
       </div>
     );
