@@ -8,6 +8,7 @@ class Categories extends React.Component {
       categories: [],
       done: false,
     };
+    this.handleCheck = this.handleCheck.bind(this);
     // this.listCategories = this.listCategories.bind(this);
   }
 
@@ -21,12 +22,28 @@ class Categories extends React.Component {
       );
   }
 
+  handleCheck(e) {
+    const { callback } = this.props;
+    callback(e.target.id, '');
+  }
+
   render() {
     const { categories, done } = this.state;
     return (
-      <div>
-        <p>Categorias:</p>
-        {done && categories.map((cat) => <p data-testid="category" key={cat.id}>{cat.name}</p>)}
+      <div className="category-list">
+        <div>Categorias:</div>
+        {
+        done && categories.map((cat) =>
+          <label
+            htmlFor={cat.name} key={cat.id}
+          >
+            <input
+              type="radio" name={cat.name}
+              data-testid="category" key={cat.id} id={cat.id}
+              onClick={this.handleCheck}
+            />{cat.name}
+          </label>)
+        }
       </div>
     );
   }
