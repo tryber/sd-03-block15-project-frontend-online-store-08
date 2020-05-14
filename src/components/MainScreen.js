@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import Botao from './Botao';
 import Categories from './Categories';
 import ProductList from './ProductList';
 import * as Api from '../services/api';
@@ -34,21 +35,18 @@ class MainScreen extends React.Component {
     const { firstTime, products } = this.state;
 
     return (
-      <div>
-        <div>
-          <Categories />
-        </div>
-        <div className="App">
-          <SearchBar callback={this.handleSearch} />
-          {firstTime && (
-            <span
-              data-testid="home-initial-message"
-            >
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </span>
-          )}
-          <ProductList products={products} />
-        </div>
+      <div className="App">
+        <Botao />
+        <SearchBar callback={this.handleSearch} />
+        <Categories />
+        {firstTime && (
+          <span
+            data-testid="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </span>
+        )}
+        <ProductList products={products} />
       </div>
     );
   }
