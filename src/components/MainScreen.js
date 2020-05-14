@@ -24,10 +24,13 @@ class MainScreen extends React.Component {
       .then((result) => this.setState({ products: result.results }));
   }
 
-  handleSearch(text) {
+  handleSearch(id, text) {
     const { categoryId, searchText } = this.state;
 
-    this.setState({ searchText: text });
+    this.setState({
+      searchText: text?text:searchText,
+      categoryId: id?id:categoryId,
+    });
     this.searchApi(categoryId, searchText);
   }
 
@@ -38,7 +41,7 @@ class MainScreen extends React.Component {
       <div className="App">
         <Botao />
         <SearchBar callback={this.handleSearch} />
-        <Categories />
+        <Categories callback={this.handleSearch} />
         {firstTime && (
           <span
             data-testid="home-initial-message"

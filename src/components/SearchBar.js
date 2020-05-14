@@ -27,7 +27,7 @@ class SearchBar extends React.Component {
         <button
           data-testid="query-button"
           type="button"
-          onClick={() => callback(searchText)}
+          onClick={() => callback('',searchText)}
         >
           Pesquisar
         </button>
