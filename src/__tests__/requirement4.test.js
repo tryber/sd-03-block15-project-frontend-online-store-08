@@ -10,7 +10,7 @@ api.getCategories.mockImplementation(
 );
 
 describe('Requisito 4', () => {
-  it.skip('should request categories from API and show it in the page', async () => {
+  it('should request categories from API and show it in the page', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     expect(screen.getAllByTestId('category').length).toEqual(mockedCategoriesResult.length);
