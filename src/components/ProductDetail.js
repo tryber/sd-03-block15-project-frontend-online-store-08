@@ -1,40 +1,26 @@
 import React, { Component } from 'react';
 
 class ProductDetail extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { product: {}, loaded: false };
-  }
-
-  componentDidMount() {
+  render() {
     const { location: { state } } = this.props;
 
-    this.setState({ product: state, loaded: true });
-  }
-
-  render() {
-    const { product, loaded } = this.state;
-    console.log(product);
-
-    if (!loaded) return <p>Loading...</p>;
+    if (!state) return <p>Loading...</p>;
 
     return (
       <div>
         <div>
           <h3>
-            {product.title}
-            <span> </span>
-            {`R$ ${product.price}`}
+            {state.title}
+            {`R$ ${state.price}`}
           </h3>
         </div>
         <div>
-          <img src={product.thumbnail} alt={product.title} />
+          <img src={state.thumbnail} alt={state.title} />
         </div>
         <div>
           <h5>Especificações técnicas</h5>
           <p>
-            {product.condition}
+            {state.condition}
           </p>
         </div>
       </div>
