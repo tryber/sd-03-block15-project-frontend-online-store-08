@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import Botao from './Botao';
 import Categories from './Categories';
 import ProductList from './ProductList';
 import * as Api from '../services/api';
@@ -35,6 +36,7 @@ class MainScreen extends React.Component {
 
     return (
       <div className="App">
+        <Botao />
         <SearchBar callback={this.handleSearch} />
         <Categories />
         {firstTime && (
