@@ -30,14 +30,17 @@ class Categories extends React.Component {
   render() {
     const { categories, done } = this.state;
     return (
-      <div>
-        <p>Categorias:</p>
+      <div className="category-list">
+        <div>Categorias:</div>
         {
         done && categories.map((cat) =>
-          <p
+        <label
+          htmlFor={cat.name} key={cat.id}>
+          <input type="radio" name={cat.name}
             data-testid="category" key={cat.id} id={cat.id}
             onClick={this.handleCheck}
-          >{cat.name}</p>)
+          />{cat.name}
+        </label>)
         }
       </div>
     );
