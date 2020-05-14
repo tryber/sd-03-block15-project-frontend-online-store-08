@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import Botao from './Botao';
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class MainScreen extends React.Component {
     const { firstTime } = this.state;
     return (
       <div className="App">
+        <Botao />
         <SearchBar />
         {firstTime && (
           <span
