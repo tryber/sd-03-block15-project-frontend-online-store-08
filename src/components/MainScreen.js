@@ -26,7 +26,7 @@ class MainScreen extends React.Component {
 
   handleSearch(id, text) {
     const { categoryId, searchText } = this.state;
-    
+
     if (text) {
       this.setState({
         searchText: text,
