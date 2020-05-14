@@ -38,7 +38,7 @@ class Categories extends React.Component {
             htmlFor={cat.name} key={cat.id}
           >
             <input
-              type="radio" name={cat.name}
+              type="radio" name="category"
               data-testid="category" key={cat.id} id={cat.id}
               onClick={this.handleCheck}
             />{cat.name}

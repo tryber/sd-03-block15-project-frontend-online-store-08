@@ -10,7 +10,7 @@ class MainScreen extends React.Component {
     super(props);
 
     this.state = {
-      categoryId: 'MLB1403',
+      categoryId: '',
       firstTime: true,
       products: [],
       searchText: '',

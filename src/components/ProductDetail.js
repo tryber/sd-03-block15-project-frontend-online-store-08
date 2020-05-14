@@ -9,10 +9,11 @@ class ProductDetail extends Component {
 
     return (
       <div>
+        <Link to="/">Voltar</Link>
         <div>
-          <Link to="/">Voltar</Link>
-          <h3>
+          <h3 data-testid="product-detail-name">
             {state.title}
+            <br />
             {`R$ ${state.price}`}
           </h3>
         </div>
@@ -24,6 +25,9 @@ class ProductDetail extends Component {
           <p>
             {state.condition}
           </p>
+        </div>
+        <div>
+          <input type="textArea" />
         </div>
       </div>
     );
