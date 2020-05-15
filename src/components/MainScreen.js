@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Categories from './Categories';
-import ProductList from './ProductList';
+import ProductCard from './ProductCard';
 import * as Api from '../services/api';
 
 class MainScreen extends React.Component {
@@ -58,7 +58,7 @@ class MainScreen extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
         )}
-        <ProductList products={products} />
+        {products.map((a) => <ProductCard key={a.id} product={a} cart={cart} />)}
       </div>
     );
   }
