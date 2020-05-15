@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
-import Botao from './Botao';
 import Categories from './Categories';
 import ProductList from './ProductList';
 import * as Api from '../services/api';
@@ -10,10 +10,8 @@ class MainScreen extends React.Component {
     super(props);
 
     this.state = {
-      categoryId: '',
       firstTime: true,
       products: [],
-      searchText: '',
     };
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -25,17 +23,7 @@ class MainScreen extends React.Component {
   }
 
   handleSearch(id, text) {
-    const { categoryId, searchText } = this.state;
-
-    if (text) {
-      this.setState({ searchText: text });
-    }
-
-    if (id) {
-      this.setState({ categoryId: id });
-    }
-
-    this.searchApi(categoryId, searchText);
+    this.searchApi(id, text);
   }
 
   render() {
@@ -43,7 +31,9 @@ class MainScreen extends React.Component {
 
     return (
       <div className="App">
-        <Botao />
+        <Link to="/carrinho" data-testid="shopping-cart-button">
+          Carrinho
+        </Link>
         <SearchBar callback={this.handleSearch} />
         <Categories callback={this.handleSearch} />
         {firstTime && (
