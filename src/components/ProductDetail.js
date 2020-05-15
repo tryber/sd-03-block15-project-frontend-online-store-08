@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StarRating from './StarRating';
+
 class ProductDetail extends Component {
   render() {
     const { location: { state } } = this.props;
@@ -25,7 +26,7 @@ class ProductDetail extends Component {
           </p>
         </div>
         <div>
-          <StarRating id={this.props.location.pathname}/>
+          <StarRating id={this.props.location.pathname} />
         </div>
       </div>
     );

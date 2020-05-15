@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import BeautyStars from "beauty-stars";
+import React from 'react';
+import BeautyStars from 'beauty-stars';
 
-class StarRating extends Component {
+class StarRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '', 
+      productId: '',
       value: 0,
       comment: '',
     };
@@ -13,22 +13,22 @@ class StarRating extends Component {
     this.updateComment = this.updateComment.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const prevRating = JSON.parse(localStorage.getItem('rating'));
     if (prevRating) {
-      const { productId, value, comment} = prevRating;
+      const { productId, value, comment } = prevRating;
       this.setState(
-        { 
+        {
           productId,
           value,
           comment,
-        }
-      ); 
+        },
+      );
     }
   }
 
-  updateComment(comment){
-    this.setState({comment});
+  updateComment(comment) {
+    this.setState({ comment });
   }
 
   saveRating() {
@@ -44,25 +44,25 @@ class StarRating extends Component {
   render() {
     return (
       <div>
-      <BeautyStars
-        value={this.state.value}
-        onChange={
-          value => this.setState(
-            { value },
-            () => this.saveRating())
-        }
-        size="10px"
-      />
-      <label htmlFor = "userComment">Escreva seu comentário:
-      </label>
-      <div>
-        <input
-          type="textArea" name="userComment" value={this.state.comment}
-          onChange={(e)=> this.updateComment(e.target.value)}
-          data-testid="product-detail-evaluation" 
+        <BeautyStars
+          value={this.state.value}
+          onChange={
+            value => this.setState(
+              { value },
+              () => this.saveRating())
+          }
+          size="10px"
         />
-        <button onClick={() => this.saveRating()}>Enviar</button>
-      </div>
+        <label htmlFor="userComment">Escreva seu comentário:
+        </label>
+        <div>
+          <input
+            type="textArea" name="userComment" value={this.state.comment}
+            onChange={(e) => this.updateComment(e.target.value)}
+            data-testid="product-detail-evaluation"
+          />
+          <button onClick={() => this.saveRating()}>Enviar</button>
+        </div>
       </div>
     );
   }
