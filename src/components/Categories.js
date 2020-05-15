@@ -32,18 +32,22 @@ class Categories extends React.Component {
     return (
       <div className="category-list">
         <div>Categorias:</div>
-        {
-        done && categories.map((cat) =>
+        {done && categories.map((cat) => (
           <label
-            htmlFor={cat.name} key={cat.id}
+            htmlFor={cat.name}
+            key={cat.id}
           >
             <input
-              type="radio" name="category"
-              data-testid="category" key={cat.id} id={cat.id}
+              data-testid="category"
+              id={cat.id}
+              key={cat.id}
+              name="category"
               onClick={this.handleCheck}
-            />{cat.name}
-          </label>)
-        }
+              type="radio"
+            />
+            {cat.name}
+          </label>
+        ))}
       </div>
     );
   }
