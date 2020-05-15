@@ -9,11 +9,9 @@ class StarRating extends Component {
       value: 0,
       comment: '',
     };
-    const id = this.props;
     this.saveRating = this.saveRating.bind(this);
     this.updateComment = this.updateComment.bind(this);
   }
-
 
   componentDidMount() {
     const prevRating = JSON.parse(localStorage.getItem('rating'));
@@ -55,14 +53,16 @@ class StarRating extends Component {
         }
         size="10px"
       />
-      <label htmlFor = "userComment">
+      <label htmlFor = "userComment">Escreva seu comentário:
+      </label>
+      <div>
         <input
           type="textArea" name="userComment" value={this.state.comment}
           onChange={(e)=> this.updateComment(e.target.value)}
           data-testid="product-detail-evaluation" 
         />
-      </label>
-      <button onClick={() => this.saveRating()}>Enviar</button>
+        <button onClick={() => this.saveRating()}>Enviar</button>
+      </div>
       </div>
     );
   }
