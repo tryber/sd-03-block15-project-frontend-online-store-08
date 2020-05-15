@@ -12,13 +12,14 @@ class ProductDetail extends Component {
     this.state = { product: {}, loaded: false, itensNoCarrinho: 0 };
     this.salvaQtdItem = this.salvaQtdItem.bind(this);
   }
-
+  
   componentDidMount() {
     const { location: { state } } = this.props;
     this.funcaoProCCMount();
   }
-
+  
   funcaoProCCMount() {
+    this.setState({ product: state, loaded: true });
     const { match } = this.props;
     const guardar = JSON.parse(localStorage.getItem('Produtos') || '[]');
     const produtoAtual = guardar.find((item) => item.id === match.params.id);
@@ -69,7 +70,7 @@ class ProductDetail extends Component {
 
 ProductDetail.propTypes = {
   location: PropTypes.shape({ state: PropTypes.object }).isRequired,
-  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired
+  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
 };
 
 export default ProductDetail;
