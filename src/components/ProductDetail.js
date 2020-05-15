@@ -25,8 +25,7 @@ class ProductDetail extends Component {
           </p>
         </div>
         <div>
-          <StarRating />
-          <input type="textArea" data-testid="product-detail-evaluation" />
+          <StarRating id={this.props.location.pathname}/>
         </div>
       </div>
     );
