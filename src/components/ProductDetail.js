@@ -14,12 +14,11 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    const { location: { state } } = this.props;
     this.funcaoProCCMount();
   }
 
   funcaoProCCMount() {
-    this.setState({ product: state, loaded: true });
+    this.setState({ loaded: true });
     const { match } = this.props;
     const guardar = JSON.parse(localStorage.getItem('Produtos') || '[]');
     const produtoAtual = guardar.find((item) => item.id === match.params.id);
