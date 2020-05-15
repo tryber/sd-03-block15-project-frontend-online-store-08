@@ -47,7 +47,7 @@ class StarRating extends React.Component {
         <BeautyStars
           value={this.state.value}
           onChange={
-            value => this.setState(
+            (value) => this.setState(
               { value },
               () => this.saveRating())
           }
