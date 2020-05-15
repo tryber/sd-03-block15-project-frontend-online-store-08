@@ -38,26 +38,26 @@ class ProductDetail extends Component {
 
   render() {
     const { product, loaded, itensNoCarrinho } = this.state;
-    console.log(product);
 
-    if (!loaded) return <p>Loading...</p>;
+    if (!state) return <p>Loading...</p>;
 
     return (
       <div>
+        <Link to="/">Voltar</Link>
         <div>
-          <h3>
-            {product.title}
-            <span> </span>
-            {`R$ ${product.price}`}
+          <h3 data-testid="product-detail-name">
+            {state.title}
+            <br />
+            {`R$ ${state.price}`}
           </h3>
         </div>
         <div>
-          <img src={product.thumbnail} alt={product.title} />
+          <img src={state.thumbnail} alt={state.title} />
         </div>
         <div>
           <h5>Especificações técnicas</h5>
           <p>
-            {product.condition}
+            {state.condition}
           </p>
         </div>
         <div>
@@ -71,6 +71,7 @@ class ProductDetail extends Component {
             produtoAtual={this.props.location.state}
             callbackItem={this.salvaQtdItem}
           />
+          <input type="textArea" />
         </div>
       </div>
 
