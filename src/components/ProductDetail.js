@@ -9,7 +9,7 @@ class ProductDetail extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { product: {}, loaded: false, itensNoCarrinho: 0, };
+    this.state = { product: {}, loaded: false, itensNoCarrinho: 0 };
     this.salvaQtdItem = this.salvaQtdItem.bind(this);
   }
 
@@ -23,9 +23,7 @@ class ProductDetail extends Component {
     const { match } = this.props;
     const guardar = JSON.parse(localStorage.getItem('Produtos') || '[]');
     const produtoAtual = guardar.find((item) => item.id === match.params.id);
-    this.setState({
-      produtoAtual,
-    });
+    this.setState({ produtoAtual });
   }
 
   salvaQtdItem() {
@@ -38,33 +36,23 @@ class ProductDetail extends Component {
 
   render() {
     const { product, loaded, itensNoCarrinho } = this.state;
-    console.log(product);
-
     if (!loaded) return <p>Loading...</p>;
-
     return (
       <div>
         <div>
           <h3>
             {product.title}
-            <span> </span>
             {`R$ ${product.price}`}
           </h3>
         </div>
-        <div>
-          <img src={product.thumbnail} alt={product.title} />
-        </div>
+        <div><img src={product.thumbnail} alt={product.title} /></div>
         <div>
           <h5>Especificações técnicas</h5>
-          <p>
-            {product.condition}
-          </p>
+          <p>{product.condition}</p>
         </div>
         <div>
           <div className="flexProduct">
-            <Link to="/">
-              <img className="setaVoltarProduct" src={SetaVoltarProduct} alt="" />
-            </Link>
+            <Link to="/"><img className="setaVoltarProduct" src={SetaVoltarProduct} alt="" /></Link>
             <BotaoQtdECarrinho itensNoCarrinho={itensNoCarrinho} />
           </div>
           <DescricaoeQuant
@@ -78,15 +66,7 @@ class ProductDetail extends Component {
   }
 }
 
-ProductDetail.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.object,
-  }).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-  }).isRequired,
-};
+ProductDetail.propTypes = { location: PropTypes.shape({ state: PropTypes.object }).isRequired,
+  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired };
 
 export default ProductDetail;

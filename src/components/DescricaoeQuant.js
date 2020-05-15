@@ -28,16 +28,12 @@ class DescricaoeQuant extends React.Component {
         disabled: !state.disabled,
       }));
     } else {
-      this.setState((state) => ({
-        quant: state.quant - 1,
-      }));
+      this.setState((state) => ({ quant: state.quant - 1 }));
     }
   }
 
   salvaItem() {
-    const {
-      id, price, thumbnail, title,
-    } = this.props.produtoAtual;
+    const { id, price, thumbnail, title } = this.props.produtoAtual;
     const { quant } = this.state;
     const guardar = JSON.parse(localStorage.getItem('Produtos') || '[]');
     const itemExistente = (guardar.find((item) => item.id === id));
@@ -82,9 +78,7 @@ class DescricaoeQuant extends React.Component {
   }
 
   render() {
-    const {
-      price, thumbnail, title, attributes,
-    } = this.props.produtoAtual;
+    const { price, thumbnail, title, attributes } = this.props.produtoAtual;
     return (
       <div className="containerDescricao">
         <h1 className="tituloDesc">
