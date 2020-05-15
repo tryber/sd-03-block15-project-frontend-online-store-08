@@ -12,12 +12,12 @@ class ProductDetail extends Component {
     this.state = { product: {}, loaded: false, itensNoCarrinho: 0 };
     this.salvaQtdItem = this.salvaQtdItem.bind(this);
   }
-  
+
   componentDidMount() {
     const { location: { state } } = this.props;
     this.funcaoProCCMount();
   }
-  
+
   funcaoProCCMount() {
     this.setState({ product: state, loaded: true });
     const { match } = this.props;
