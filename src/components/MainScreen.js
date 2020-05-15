@@ -19,6 +19,10 @@ class MainScreen extends React.Component {
   }
 
   componentDidMount() {
+    this.createCart();
+  }
+
+  createCart() {
     const { location: { state } } = this.props;
 
     if (state) {
