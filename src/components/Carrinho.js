@@ -18,7 +18,12 @@ class Carrinho extends Component {
         </Link>
         {state.length === 0
           ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          : state.map((product) => <CartCard key={product.id} product={product} />)}
+          : state.map((product) => (
+            <CartCard
+              key={product.id}
+              product={product}
+            />
+          ))}
       </div>
     );
   }

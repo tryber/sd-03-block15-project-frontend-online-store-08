@@ -6,9 +6,18 @@ class ProductCard extends Component {
 
     return (
       <div data-testid="product">
-        <h3>{product.title}</h3>
+        <h3
+          data-testid="shopping-cart-product-name"
+        >
+          {product.title}
+        </h3>
         <img src={product.thumbnail} alt="thumbnail" />
         <p>{product.price}</p>
+        <p
+          data-testid="shopping-cart-product-quantity"
+        >
+          {product.quantity}
+        </p>
       </div>
     );
   }
