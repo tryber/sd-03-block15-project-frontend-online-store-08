@@ -16,7 +16,6 @@ class ProductDetail extends Component {
   componentDidMount() {
     const { location: { state } } = this.props;
     this.funcaoProCCMount();
-    this.setState({ product: state, loaded: true });
   }
 
   funcaoProCCMount() {
