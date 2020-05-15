@@ -39,6 +39,7 @@ class ProductDetail extends Component {
     if (!loaded) return <p>Loading...</p>;
     return (
       <div>
+        <Link to="/">Voltar</Link>
         <div>
           <h3>
             {product.title}
@@ -59,6 +60,7 @@ class ProductDetail extends Component {
             produtoAtual={this.props.location.state}
             callbackItem={this.salvaQtdItem}
           />
+          <input type="textArea" />
         </div>
       </div>
 
