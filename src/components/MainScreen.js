@@ -10,11 +10,20 @@ class MainScreen extends React.Component {
     super(props);
 
     this.state = {
+      cart: [],
       firstTime: true,
       products: [],
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  componentDidMount() {
+    const { location: { state } } = this.props;
+
+    if (state) {
+      this.setState({ cart: [state] });
+    }
   }
 
   searchApi(categoryId, Query) {
@@ -31,7 +40,10 @@ class MainScreen extends React.Component {
 
     return (
       <div className="App">
-        <Link to="/carrinho" data-testid="shopping-cart-button">
+        <Link
+          data-testid="shopping-cart-button"
+          to="/carrinho"
+        >
           Carrinho
         </Link>
         <SearchBar callback={this.handleSearch} />
