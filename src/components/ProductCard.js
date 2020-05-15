@@ -24,7 +24,7 @@ class ProductCard extends Component {
           data-testid="product-add-to-cart"
           to={{
             pathname: '/carrinho',
-            state: product,
+            state: [product],
           }}
         >
           Adicionar ao carrinho

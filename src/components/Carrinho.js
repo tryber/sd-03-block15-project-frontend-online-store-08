@@ -3,41 +3,23 @@ import { Link } from 'react-router-dom';
 import CartCard from './CartCard';
 
 class Carrinho extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { empty: true, products: [] };
-  }
-
-  componentDidMount() {
-    const { location: { state } } = this.props;
-    if (state) {
-      this.atualizarCarrinho(state);
-    }
-  }
-
-  atualizarCarrinho(component) {
-    this.setState((currentState) => ({
-      empty: false,
-      products: [...currentState.products, component],
-    }));
-  }
-
   render() {
-    const { empty, products } = this.state;
+    const { location: { state } } = this.props;
+    console.log(state);
+
     return (
       <div>
         <Link
           to={{
             pathname: '/',
-            state: products,
+            state,
           }}
         >
           Voltar
         </Link>
-        {empty
+        {state.length === 0
           ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-          : products.map((product) => <CartCard key={product.id} product={product} />)}
+          : state.map((product) => <CartCard key={product.id} product={product} />)}
       </div>
     );
   }

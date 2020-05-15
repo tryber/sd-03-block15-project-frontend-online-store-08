@@ -22,7 +22,7 @@ class MainScreen extends React.Component {
     const { location: { state } } = this.props;
 
     if (state) {
-      this.setState({ cart: [state] });
+      this.setState({ cart: state });
     }
   }
 
@@ -36,13 +36,16 @@ class MainScreen extends React.Component {
   }
 
   render() {
-    const { firstTime, products } = this.state;
+    const { cart, firstTime, products } = this.state;
 
     return (
       <div className="App">
         <Link
           data-testid="shopping-cart-button"
-          to="/carrinho"
+          to={{
+            pathname: '/carrinho',
+            state: cart,
+          }}
         >
           Carrinho
         </Link>
