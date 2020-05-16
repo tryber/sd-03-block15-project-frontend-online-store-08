@@ -13,7 +13,7 @@ class ProductCard extends Component {
         <Link
           data-testid="product-detail-link"
           to={{
-            pathname: `/product/${product.id}`,
+            pathname: '/product/${product.id}',
             state: product,
           }}
         >

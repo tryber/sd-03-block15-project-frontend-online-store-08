@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Carrinho extends Component {
   constructor(props) {
     super(props);
-    this.state = { quantity: 1};
+    this.state = { quantity: 1 };
   }
   render() {
     const { location: { state } } = this.props;

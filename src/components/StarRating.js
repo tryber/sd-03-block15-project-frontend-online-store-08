@@ -4,13 +4,12 @@ import BeautyStars from 'beauty-stars';
 class StarRating extends React.Component {
   constructor(props) {
     super(props);
-    const readProduct = this.lastAvaliation(); 
+    const readProduct = this.lastAvaliation();
 
-    if (typeof(readProduct) != 'undefined') {
+    if (typeof (readProduct) !== 'undefined') {
       const { productId, value, comment } = readProduct;
       this.state = ({ productId, value, comment, previous: true });
-    }
-    else {
+    } else {
       this.state = ({ productId: '', value: 0, comment: '', previous: false });
     }
 
@@ -18,34 +17,7 @@ class StarRating extends React.Component {
     this.lastAvaliation = this.lastAvaliation.bind(this);
     this.saveRating = this.saveRating.bind(this);
     this.getIndexOfProduct = this.getIndexOfProduct.bind(this);
-    this.updateComment = this.updateComment.bind(this);  
-  }
-
-  isAlreadyVariableOnLocalStorage() {
-    let prevRating = [];
-    if(JSON.parse(localStorage.getItem('rating'))){
-      prevRating = JSON.parse(localStorage.getItem('rating'));
-    }
-
-    return prevRating;
-  }
-
-  lastAvaliation() {
-    const prevRating = this.isAlreadyVariableOnLocalStorage();
-    const { id } = this.props;
-    let readProduct;
-
-    if (prevRating.length) {
-      readProduct = prevRating.find((e) => e.productId === id);
-    }
-
-    if (typeof(readProduct) != 'undefined') {
-      return readProduct;
-    }
-  }
-
-  updateComment(comment) {
-    this.setState({ comment });
+    this.updateComment = this.updateComment.bind(this);
   }
 
   getIndexOfProduct() {
@@ -61,6 +33,35 @@ class StarRating extends React.Component {
     return index;
   }
 
+  isAlreadyVariableOnLocalStorage() {
+    let prevRating = [];
+    if (JSON.parse(localStorage.getItem('rating'))) {
+      prevRating = JSON.parse(localStorage.getItem('rating'));
+    }
+
+    return prevRating;
+  }
+
+  lastAvaliation() {
+    const prevRating = this.isAlreadyVariableOnLocalStorage();
+    const { id } = this.props;
+    let readProduct;
+
+    if (prevRating.length) {
+      readProduct = prevRating.find((e) => e.productId === id);
+    }
+    /*
+    if (typeof (readProduct) !== 'undefined') {
+      return readProduct;
+    }
+    */
+   return readProduct;
+  }
+
+  updateComment(comment) {
+    this.setState({ comment });
+  }
+
   saveRating() {
     const { id } = this.props;
     let prevRating = this.isAlreadyVariableOnLocalStorage();
@@ -69,17 +70,15 @@ class StarRating extends React.Component {
       value: this.state.value,
       comment: this.state.comment,
     };
-    
+
     if (this.state.previous) {
-      prevRating[this.getIndexOfProduct()]=rating;
-    }
-    else if (prevRating.length) {
+      prevRating[this.getIndexOfProduct()] = rating;
+    } else if (prevRating.length) {
       prevRating = [...prevRating, rating];
-    }
-    else {
+    } else {
       prevRating = [rating];
     }
-    
+
     localStorage.setItem('rating', JSON.stringify(prevRating));
     this.setState({ comment: '' }, window.location.reload(true));
   }
@@ -91,28 +90,24 @@ class StarRating extends React.Component {
       <div>
         <BeautyStars
           value={this.state.value}
-          onChange={
-            (value) => this.setState(
-              { value },
+          onChange={(value) => this.setState({ value },
               () => this.saveRating())
           }
           size="10px"
         />
-        <label htmlFor="userComment">Escreva seu comentário:
-        </label>
+        <label htmlFor="userComment">Escreva seu comentário:</label>
         <div>
           <input
-            type="textArea" name="userComment" 
+            type="textArea" name="userComment"
             onChange={(e) => this.updateComment(e.target.value)}
             data-testid="product-detail-evaluation"
           />
           <button onClick={() => this.saveRating()}>Enviar</button>
         </div>
         <div>
-          {
-          this.state.previous &&
+          {this.state.previous &&
           <div>
-           <p>Último Comentário: {comment}</p>
+            <p>Último Comentário: {comment}</p>
           </div>
           }
         </div>
