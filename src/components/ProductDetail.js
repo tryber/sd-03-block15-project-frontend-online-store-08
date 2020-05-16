@@ -30,15 +30,12 @@ class ProductDetail extends Component {
           <StarRating id={this.props.location.pathname} />
         </div>
         <div>
-        <Link
-          data-testid="product-detail-add-to-cart"
-          to={{
-            pathname: '/carrinho',
-            state,
-          }}
-        >
-          Adicionar ao carrinho
-        </Link>
+          <Link
+            data-testid="product-detail-add-to-cart"
+            to={{ pathname: '/carrinho', state }}
+          >
+            Adicionar ao carrinho
+          </Link>
         </div>
       </div>
     );
