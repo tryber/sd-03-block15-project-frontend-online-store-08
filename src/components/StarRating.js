@@ -13,7 +13,7 @@ class StarRating extends React.Component {
       this.state = ({ productId: '', value: 0, comment: '', previous: false });
     }
 
-    this.isAlreadyVariableOnLocalStorage = this.isAlreadyVariableOnLocalStorage.bind(this);
+    this.alreadyVariableOnLocalStorage = this.alreadyVariableOnLocalStorage.bind(this);
     this.lastAvaliation = this.lastAvaliation.bind(this);
     this.saveRating = this.saveRating.bind(this);
     this.getIndexOfProduct = this.getIndexOfProduct.bind(this);
@@ -33,7 +33,7 @@ class StarRating extends React.Component {
     return index;
   }
 
-  isAlreadyVariableOnLocalStorage() {
+  alreadyVariableOnLocalStorage() {
     let prevRating = [];
     if (JSON.parse(localStorage.getItem('rating'))) {
       prevRating = JSON.parse(localStorage.getItem('rating'));
@@ -43,7 +43,7 @@ class StarRating extends React.Component {
   }
 
   lastAvaliation() {
-    const prevRating = this.isAlreadyVariableOnLocalStorage();
+    const prevRating = this.alreadyVariableOnLocalStorage();
     const { id } = this.props;
     let readProduct;
 
@@ -64,7 +64,7 @@ class StarRating extends React.Component {
 
   saveRating() {
     const { id } = this.props;
-    let prevRating = this.isAlreadyVariableOnLocalStorage();
+    let prevRating = this.alreadyVariableOnLocalStorage();
     const rating = {
       productId: id,
       value: this.state.value,
