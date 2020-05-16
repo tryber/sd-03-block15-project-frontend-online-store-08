@@ -13,7 +13,7 @@ class ProductCard extends Component {
         <Link
           data-testid="product-detail-link"
           to={{
-            pathname: '/product/${product.id}',
+            pathname: `/product/${product.id}`,
             state: product,
           }}
         >
@@ -22,7 +22,7 @@ class ProductCard extends Component {
         <Link
           data-testid="product-add-to-cart"
           to={{
-            pathname: `/carrinho`,
+            pathname: '/carrinho',
             state: product,
           }}
         >

@@ -4,6 +4,12 @@ import BeautyStars from 'beauty-stars';
 class StarRating extends React.Component {
   constructor(props) {
     super(props);
+    this.isAlreadyVariableOnLocalStorage = this.isAlreadyVariableOnLocalStorage.bind(this);
+    this.lastAvaliation = this.lastAvaliation.bind(this);
+    this.saveRating = this.saveRating.bind(this);
+    this.getIndexOfProduct = this.getIndexOfProduct.bind(this);
+    this.updateComment = this.updateComment.bind(this);
+
     const readProduct = this.lastAvaliation();
 
     if (typeof (readProduct) !== 'undefined') {
@@ -12,12 +18,6 @@ class StarRating extends React.Component {
     } else {
       this.state = ({ productId: '', value: 0, comment: '', previous: false });
     }
-
-    this.isAlreadyVariableOnLocalStorage = this.isAlreadyVariableOnLocalStorage.bind(this);
-    this.lastAvaliation = this.lastAvaliation.bind(this);
-    this.saveRating = this.saveRating.bind(this);
-    this.getIndexOfProduct = this.getIndexOfProduct.bind(this);
-    this.updateComment = this.updateComment.bind(this);
   }
 
   getIndexOfProduct() {
@@ -55,7 +55,7 @@ class StarRating extends React.Component {
       return readProduct;
     }
     */
-   return readProduct;
+    return readProduct;
   }
 
   updateComment(comment) {
