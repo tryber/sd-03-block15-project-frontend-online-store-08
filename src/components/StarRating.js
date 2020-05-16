@@ -60,11 +60,7 @@ class StarRating extends React.Component {
       value: this.state.value,
       comment: this.state.comment,
     };
-    /*
-    if (JSON.parse(localStorage.getItem('rating'))) {
-      prevRating = JSON.parse(localStorage.getItem('rating'));
-    }
-    */
+
     if (this.state.previous) {
       prevRating[this.getIndexOfProduct()] = rating;
     } else if (prevRating.length) {
