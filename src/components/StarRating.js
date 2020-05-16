@@ -54,22 +54,26 @@ class StarRating extends React.Component {
 
   saveRating() {
     const { id } = this.props;
-    let prevRating = this.lastAvaliation();
+    let readRating = [];
     const rating = {
       productId: id,
       value: this.state.value,
       comment: this.state.comment,
     };
 
-    if (this.state.previous) {
-      prevRating[this.getIndexOfProduct()] = rating;
-    } else if (prevRating.length) {
-      prevRating = [...prevRating, rating];
-    } else {
-      prevRating = [rating];
+    if (JSON.parse(localStorage.getItem('rating'))) {
+      readRating = JSON.parse(localStorage.getItem('rating'));
     }
 
-    localStorage.setItem('rating', JSON.stringify(prevRating));
+    if (this.state.previous) {
+      readRating[this.getIndexOfProduct()] = rating;
+    } else if (readRating.length) {
+      readRating = [...readRating, rating];
+    } else {
+      readRating = [rating];
+    }
+
+    localStorage.setItem('rating', JSON.stringify(readRating));
     this.setState({ comment: '' }, window.location.reload(true));
   }
 
