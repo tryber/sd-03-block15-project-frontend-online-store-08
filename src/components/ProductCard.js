@@ -19,6 +19,15 @@ class ProductCard extends Component {
         >
           Mais detalhes
         </Link>
+        <Link
+          data-testid="product-add-to-cart"
+          to={{
+            pathname: '/carrinho',
+            state: product,
+          }}
+        >
+          Adicionar ao carrinho
+        </Link>
       </div>
     );
   }
