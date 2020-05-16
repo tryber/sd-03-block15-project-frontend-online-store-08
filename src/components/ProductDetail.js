@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 
 class ProductDetail extends Component {
@@ -27,6 +28,17 @@ class ProductDetail extends Component {
         </div>
         <div>
           <StarRating id={this.props.location.pathname} />
+        </div>
+        <div>
+        <Link
+          data-testid="product-detail-add-to-cart"
+          to={{
+            pathname: '/carrinho',
+            state,
+          }}
+        >
+          Adicionar ao carrinho
+        </Link>
         </div>
       </div>
     );
