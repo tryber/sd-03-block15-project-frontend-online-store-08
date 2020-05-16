@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import StarRating from './StarRating';
 
 class ProductDetail extends Component {
   render() {
@@ -9,7 +9,6 @@ class ProductDetail extends Component {
 
     return (
       <div>
-        <Link to="/">Voltar</Link>
         <div>
           <h3 data-testid="product-detail-name">
             {state.title}
@@ -27,7 +26,7 @@ class ProductDetail extends Component {
           </p>
         </div>
         <div>
-          <input type="textArea" />
+          <StarRating id={this.props.location.pathname} />
         </div>
       </div>
     );
