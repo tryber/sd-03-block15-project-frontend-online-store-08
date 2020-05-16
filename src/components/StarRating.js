@@ -4,26 +4,43 @@ import BeautyStars from 'beauty-stars';
 class StarRating extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      productId: '',
-      value: 0,
-      comment: '',
-    };
+    const readProduct = this.lastAvaliation(); 
+
+    if (typeof(readProduct) != 'undefined') {
+      const { productId, value, comment } = readProduct;
+      this.state = ({ productId, value, comment, previous: true });
+    }
+    else {
+      this.state = ({ productId: '', value: 0, comment: '', previous: false });
+    }
+
+    this.isAlreadyVariableOnLocalStorage = this.isAlreadyVariableOnLocalStorage.bind(this);
+    this.lastAvaliation = this.lastAvaliation.bind(this);
     this.saveRating = this.saveRating.bind(this);
-    this.updateComment = this.updateComment.bind(this);
+    this.getIndexOfProduct = this.getIndexOfProduct.bind(this);
+    this.updateComment = this.updateComment.bind(this);  
   }
 
-  componentWillMount() {
-    const prevRating = JSON.parse(localStorage.getItem('rating'));
-    if (prevRating) {
-      const { productId, value, comment } = prevRating;
-      this.setState(
-        {
-          productId,
-          value,
-          comment,
-        },
-      );
+  isAlreadyVariableOnLocalStorage() {
+    let prevRating = [];
+    if(JSON.parse(localStorage.getItem('rating'))){
+      prevRating = JSON.parse(localStorage.getItem('rating'));
+    }
+
+    return prevRating;
+  }
+
+  lastAvaliation() {
+    const prevRating = this.isAlreadyVariableOnLocalStorage();
+    const { id } = this.props;
+    let readProduct;
+
+    if (prevRating.length) {
+      readProduct = prevRating.find((e) => e.productId === id);
+    }
+
+    if (typeof(readProduct) != 'undefined') {
+      return readProduct;
     }
   }
 
@@ -31,17 +48,45 @@ class StarRating extends React.Component {
     this.setState({ comment });
   }
 
+  getIndexOfProduct() {
+    let prevRating = [];
+    prevRating = JSON.parse(localStorage.getItem('rating'));
+    const { id } = this.props;
+    let index;
+    prevRating.forEach((e, idx) => {
+      if (e.productId === id) {
+        index = idx;
+      }
+    });
+    return index;
+  }
+
   saveRating() {
     const { id } = this.props;
-    const rating = {};
-    rating.productId = id;
-    rating.value = this.state.value;
-    rating.comment = this.state.comment;
-    localStorage.setItem('rating', JSON.stringify(rating));
-    this.setState({ comment: '' });
+    let prevRating = this.isAlreadyVariableOnLocalStorage();
+    const rating = {
+      productId: id,
+      value: this.state.value,
+      comment: this.state.comment,
+    };
+    
+    if (this.state.previous) {
+      prevRating[this.getIndexOfProduct()]=rating;
+    }
+    else if (prevRating.length) {
+      prevRating = [...prevRating, rating];
+    }
+    else {
+      prevRating = [rating];
+    }
+    
+    localStorage.setItem('rating', JSON.stringify(prevRating));
+    this.setState({ comment: '' }, window.location.reload(true));
   }
 
   render() {
+    let comment = '';
+    if (this.state.previous) { comment = this.lastAvaliation().comment; }
     return (
       <div>
         <BeautyStars
@@ -57,11 +102,19 @@ class StarRating extends React.Component {
         </label>
         <div>
           <input
-            type="textArea" name="userComment" value={this.state.comment}
+            type="textArea" name="userComment" 
             onChange={(e) => this.updateComment(e.target.value)}
             data-testid="product-detail-evaluation"
           />
           <button onClick={() => this.saveRating()}>Enviar</button>
+        </div>
+        <div>
+          {
+          this.state.previous &&
+          <div>
+           <p>Último Comentário: {comment}</p>
+          </div>
+          }
         </div>
       </div>
     );
