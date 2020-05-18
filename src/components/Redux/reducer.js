@@ -2,7 +2,7 @@ let lastId = 0;
 
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case action.type === 'addItem':
+    case 'addItem':
       lastId += 1;
       return [
         ...state,
@@ -12,8 +12,8 @@ export default function reducer(state = [], action) {
         },
       ];
 
-    case action.type === 'removeItem':
-      return state.filter((e) => e.id !== action.payload.id);
+    case 'removeItem':
+      return state.filter((e) => e.product.id !== action.payload.id);
 
     default:
       return state;

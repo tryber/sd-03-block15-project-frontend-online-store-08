@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class ProductCard extends Component {
   render() {
     const { product } = this.props;
+    product.quantity = 1;
 
     return (
       <div data-testid="product">
@@ -13,11 +14,6 @@ class ProductCard extends Component {
         </h3>
         <img src={product.thumbnail} alt="thumbnail" />
         <p>{product.price}</p>
-        <p
-          data-testid="shopping-cart-product-quantity"
-        >
-          {product.available_quantity}
-        </p>
       </div>
     );
   }

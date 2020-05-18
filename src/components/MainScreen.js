@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import SearchBar from './SearchBar';
 import Categories from './Categories';
 import ProductCard from './ProductCard';
 import * as Api from '../services/api';
 
-class MainScreen extends React.Component {
+export class MainScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -68,4 +69,5 @@ class MainScreen extends React.Component {
   }
 }
 
-export default MainScreen;
+const mapStateToProps = (state) => ({ cart: state.product });
+export default connect(mapStateToProps)(MainScreen);

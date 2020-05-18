@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import Store from './components/Redux/Store';
+import store from './components/Redux/store';
 
 import App from './App';
 
@@ -10,7 +10,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <Provider store={Store}>
+  <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

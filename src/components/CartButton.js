@@ -7,21 +7,26 @@ class CartButton extends Component {
     this.state = { cart: [] };
   }
 
-  addToCart(elem) {
+  addToCart(carrinho, elem) {
     const { cart } = this.state;
-    if (cart.findIndex((e) => e.id === elem.id) === -1) {
+    const index = carrinho.findIndex((e) => e.id === elem.id);
+
+    if (index === -1) {
       this.setState({ cart: [...cart, elem] });
+      cart[cart.length - 1].quantity = 1;
+    } else {
+      cart[index].quantity += 1;
     }
   }
 
   render() {
-    const { cart, product } = this.props;
+    const { cart, item } = this.props;
 
     return (
       <div>
         <button
           data-testid="product-add-to-cart"
-          onClick={() => this.addToCart(cart)}
+          onClick={() => this.addToCart(cart, item)}
           type="button"
         >
           Adicionar ao carrinho

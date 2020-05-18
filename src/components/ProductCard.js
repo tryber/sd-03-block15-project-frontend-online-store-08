@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CartButton from './CartButton';
 
 class ProductCard extends Component {
   render() {
@@ -21,11 +20,6 @@ class ProductCard extends Component {
           Mais detalhes
         </Link>
         <br />
-        <CartButton
-          data-testid="product-add-to-cart"
-          cart={cart}
-          item={product}
-        />
         <Link
           data-testid="product-add-to-cart"
           to={{
