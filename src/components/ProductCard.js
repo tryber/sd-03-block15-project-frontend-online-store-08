@@ -6,13 +6,13 @@ import * as Actions from './Redux/actions';
 
 class ProductCard extends Component {
   addItemToCart(product) {
-    const { addItem, cart } = this.props;
+    const { addItem } = this.props;
 
     addItem(product);
   }
 
   render() {
-    const { product, cart } = this.props;
+    const { product } = this.props;
 
     return (
       <div data-testid="product">

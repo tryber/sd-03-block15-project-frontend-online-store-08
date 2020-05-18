@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class ProductDetail extends Component {
   render() {
@@ -35,4 +36,5 @@ class ProductDetail extends Component {
   }
 }
 
-export default ProductDetail;
+const mapStateToProps = (state) => ({ cart: state.products });
+export default connect(mapStateToProps)(ProductDetail);
