@@ -6,7 +6,7 @@ import * as Actions from './Redux/actions';
 
 class ProductCard extends Component {
   addItemToCart(product) {
-    const { addItem } = this.props;
+    const { addItem, cart } = this.props;
 
     addItem(product);
   }
@@ -19,13 +19,9 @@ class ProductCard extends Component {
         <h3>{product.title}</h3>
         <img src={product.thumbnail} alt="thumbnail" />
         <p>{product.price}</p>
-        <p>{cart}</p>
         <Link
           data-testid="product-detail-link"
-          to={{
-            pathname: `/product/${product.id}`,
-            state: [product],
-          }}
+          to={`/product/${product.id}`}
         >
           Mais detalhes
         </Link>

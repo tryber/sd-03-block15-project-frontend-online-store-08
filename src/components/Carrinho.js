@@ -22,5 +22,5 @@ class Carrinho extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ cart: state.product });
+const mapStateToProps = (state) => ({ cart: state });
 export default connect(mapStateToProps)(Carrinho);
