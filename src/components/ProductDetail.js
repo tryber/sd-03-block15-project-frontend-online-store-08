@@ -57,7 +57,7 @@ class ProductDetail extends Component {
 
     return (
       <button
-        data-testid="product-add-to-cart"
+        data-testid="product-detail-add-to-cart"
         onClick={() => this.addItemToCart(state)}
         type="button"
       >
@@ -70,6 +70,13 @@ class ProductDetail extends Component {
     return (
       <div>
         <Link to="/">Voltar</Link>
+        <span> </span>
+        <Link
+          data-testid="shopping-cart-button"
+          to="/carrinho"
+        >
+          Carrinho
+        </Link>
         {this.addTitleAndPrice()}
         {this.addCartImg()}
         {this.addCartTech()}
