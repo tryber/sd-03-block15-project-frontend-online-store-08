@@ -12,32 +12,31 @@ class MainScreen extends React.Component {
 
     this.state = {
       cart: props.cart,
+      categoryId: '',
       firstTime: true,
       products: [],
+      query: '',
     };
 
+    this.handleCategory = this.handleCategory.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  componentDidMount() {
-    this.createCart();
-  }
+  searchApi() {
+    const { categoryId, query } = this.state;
 
-  createCart() {
-    const { cart } = this.props;
-
-    if (cart) {
-      this.setState({ cart });
-    }
-  }
-
-  searchApi(categoryId, Query) {
-    Api.getProductsFromCategoryAndQuery(categoryId, Query)
+    Api.getProductsFromCategoryAndQuery(categoryId, query)
       .then((result) => this.setState({ products: result.results }));
   }
 
-  handleSearch(id, text) {
-    this.searchApi(id, text);
+  handleCategory(categoryId) {
+    this.setState({ firstTime: false, categoryId });
+    this.searchApi();
+  }
+
+  handleSearch(query) {
+    this.setState({ firstTime: false, query });
+    this.searchApi();
   }
 
   render() {
@@ -47,15 +46,12 @@ class MainScreen extends React.Component {
       <div className="App">
         <Link
           data-testid="shopping-cart-button"
-          to={{
-            pathname: '/carrinho',
-            state: cart,
-          }}
+          to="/carrinho"
         >
           Carrinho
         </Link>
         <SearchBar callback={this.handleSearch} />
-        <Categories callback={this.handleSearch} />
+        <Categories callback={this.handleCategory} />
         {firstTime && (
           <span
             data-testid="home-initial-message"
@@ -69,5 +65,5 @@ class MainScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ cart: state.product });
+const mapStateToProps = (state) => ({ cart: state });
 export default connect(mapStateToProps)(MainScreen);

@@ -1,16 +1,13 @@
 export function addItem(payload) {
   return {
     type: 'addItem',
-    payload: {
-      ...payload,
-      quantity: 1,
-    },
+    payload,
   };
 }
 
 export function removeItem(payload) {
   return {
-    type: 'addItem',
+    type: 'removeItem',
     payload,
   };
 }

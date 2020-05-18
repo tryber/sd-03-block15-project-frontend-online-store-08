@@ -5,24 +5,26 @@ import { connect } from 'react-redux';
 import * as Actions from './Redux/actions';
 
 class ProductCard extends Component {
-  addItemToCart() {
-    console.log('a');
+  addItemToCart(product) {
+    const { addItem } = this.props;
+
+    addItem(product);
   }
 
   render() {
     const { product, cart } = this.props;
-    console.log(this.props)
 
     return (
       <div data-testid="product">
         <h3>{product.title}</h3>
         <img src={product.thumbnail} alt="thumbnail" />
         <p>{product.price}</p>
+        <p>{cart}</p>
         <Link
           data-testid="product-detail-link"
           to={{
             pathname: `/product/${product.id}`,
-            state: [...cart, product],
+            state: [product],
           }}
         >
           Mais detalhes
@@ -30,7 +32,7 @@ class ProductCard extends Component {
         <br />
         <button
           data-testid="product-add-to-cart"
-          onClick={() => this.addItemToCart()}
+          onClick={() => this.addItemToCart(product)}
           type="button"
         >
           Adicionar ao carrinho
@@ -41,5 +43,4 @@ class ProductCard extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
-
-export default ProductCard;
+export default connect(null, mapDispatchToProps)(ProductCard);
