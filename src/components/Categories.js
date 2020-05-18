@@ -4,12 +4,13 @@ import * as api from '../services/api';
 class Categories extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       categories: [],
       done: false,
     };
+
     this.handleCheck = this.handleCheck.bind(this);
-    // this.listCategories = this.listCategories.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class Categories extends React.Component {
 
   handleCheck(e) {
     const { callback } = this.props;
-    callback(e.target.id, '');
+    callback(e.target.id);
   }
 
   render() {
@@ -32,18 +33,22 @@ class Categories extends React.Component {
     return (
       <div className="category-list">
         <div>Categorias:</div>
-        {
-        done && categories.map((cat) =>
+        {done && categories.map((cat) => (
           <label
-            htmlFor={cat.name} key={cat.id}
+            htmlFor={cat.name}
+            key={cat.id}
           >
             <input
-              type="radio" name="category"
-              data-testid="category" key={cat.id} id={cat.id}
-              onClick={this.handleCheck}
-            />{cat.name}
-          </label>)
-        }
+              data-testid="category"
+              id={cat.id}
+              key={cat.id}
+              name="category"
+              onClick={(e) => this.handleCheck(e)}
+              type="radio"
+            />
+            {cat.name}
+          </label>
+        ))}
       </div>
     );
   }

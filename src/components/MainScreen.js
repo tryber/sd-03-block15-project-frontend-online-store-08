@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import SearchBar from './SearchBar';
-import Botao from './Botao';
 import Categories from './Categories';
-import ProductList from './ProductList';
+import ProductCard from './ProductCard';
 import * as Api from '../services/api';
 
 class MainScreen extends React.Component {
@@ -13,39 +14,38 @@ class MainScreen extends React.Component {
       categoryId: '',
       firstTime: true,
       products: [],
-      searchText: '',
+      query: '',
     };
 
+    this.handleCategory = this.handleCategory.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  searchApi(categoryId, Query) {
-    Api.getProductsFromCategoryAndQuery(categoryId, Query)
-      .then((result) => this.setState({ products: result.results }));
+  handleCategory(categoryId) {
+    const { query } = this.state;
+    Api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((result) => this.setState({ categoryId, products: result.results }));
   }
 
-  handleSearch(id, text) {
-    const { categoryId, searchText } = this.state;
-
-    if (text) {
-      this.setState({ searchText: text });
-    }
-
-    if (id) {
-      this.setState({ categoryId: id });
-    }
-
-    this.searchApi(categoryId, searchText);
+  handleSearch(query) {
+    const { categoryId } = this.state;
+    Api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((result) => this.setState({ products: result.results, query }));
   }
 
   render() {
-    const { firstTime, products } = this.state;
+    const { cart, firstTime, products } = this.state;
 
     return (
       <div className="App">
-        <Botao />
+        <Link
+          data-testid="shopping-cart-button"
+          to="/carrinho"
+        >
+          Carrinho
+        </Link>
         <SearchBar callback={this.handleSearch} />
-        <Categories callback={this.handleSearch} />
+        <Categories callback={this.handleCategory} />
         {firstTime && (
           <span
             data-testid="home-initial-message"
@@ -53,10 +53,11 @@ class MainScreen extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
         )}
-        <ProductList products={products} />
+        {products.map((a) => <ProductCard key={a.id} product={a} cart={cart} />)}
       </div>
     );
   }
 }
 
-export default MainScreen;
+const mapStateToProps = (state) => ({ cart: state });
+export default connect(mapStateToProps)(MainScreen);
