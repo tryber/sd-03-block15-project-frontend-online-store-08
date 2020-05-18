@@ -5,22 +5,26 @@ import CartCard from './CartCard';
 
 class Carrinho extends Component {
   render() {
-    const { cart } = this.props;
-    console.log(this.props.cart);
+    const { cart, quantity } = this.props;
 
     return (
       <div>
         <Link to="/">
           Voltar
         </Link>
-        {cart.length !== 0 &&
+        <p
+          data-testid="shopping-cart-product-quantity"
+        >
+          {`Voce tem ${quantity} itens no carrinho!`}
+        </p>
+        {quantity !== 0 &&
           cart.map((product) => <CartCard key={product.id} product={product} />)}
-        {cart.length === 0 &&
+        {quantity === 0 &&
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({ cart: state.products });
+const mapStateToProps = (state) => ({ cart: state.products, quantity: state.quantity });
 export default connect(mapStateToProps)(Carrinho);

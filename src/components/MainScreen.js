@@ -21,27 +21,16 @@ class MainScreen extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  componentDidUpdate() {
-    this.searchApi();
-  }
-
-  componentWillUnmount() {
-    
-  }
-
-  searchApi() {
-    const { categoryId, query } = this.state;
-
-    Api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ products: result.results }));
-  }
-
   handleCategory(categoryId) {
-    this.setState({ firstTime: false, categoryId });
+    const { query } = this.state;
+    Api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((result) => this.setState({ categoryId, products: result.results }));
   }
 
   handleSearch(query) {
-    this.setState({ firstTime: false, query });
+    const { categoryId } = this.state;
+    Api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((result) => this.setState({ products: result.results, query }));
   }
 
   render() {

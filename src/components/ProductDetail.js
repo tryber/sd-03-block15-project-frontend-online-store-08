@@ -1,40 +1,52 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from './Redux/actions';
 
 class ProductDetail extends Component {
+  addItemToCart(product) {
+    const { addItem } = this.props;
+
+    addItem(product);
+  }
+
   render() {
     const { location: { state } } = this.props;
-    const product = state[state.length - 1];
-
-    if (!product) return <p>Loading...</p>;
 
     return (
       <div>
         <Link to="/">Voltar</Link>
         <div>
           <h3 data-testid="product-detail-name">
-            {product.title}
+            {state.title}
             <br />
-            {product.price}
+            {state.price}
           </h3>
         </div>
         <div>
-          <img src={product.thumbnail} alt={product.title} />
+          <img src={state.thumbnail} alt={state.title} />
         </div>
         <div>
           <h5>Especificações técnicas</h5>
           <p>
-            {product.condition}
+            {state.condition}
           </p>
         </div>
         <div>
           <input type="textArea" />
         </div>
+        <button
+          data-testid="product-add-to-cart"
+          onClick={() => this.addItemToCart(state)}
+          type="button"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({ cart: state.products });
-export default connect(mapStateToProps)(ProductDetail);
+const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
+export default connect(null, mapDispatchToProps)(ProductDetail);
