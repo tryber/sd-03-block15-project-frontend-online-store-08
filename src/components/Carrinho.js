@@ -6,7 +6,7 @@ import CartCard from './CartCard';
 class Carrinho extends Component {
   render() {
     const { cart } = this.props;
-    console.log(this.props)
+    console.log(this.props);
 
     return (
       <div>

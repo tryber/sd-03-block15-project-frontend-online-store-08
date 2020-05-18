@@ -1,7 +1,7 @@
 export default function reducer(state = [], action) {
   switch (action.type) {
     case 'addItem':
-      console.log('reducer', action.payload, state)
+      console.log('reducer', action.payload, state);
       return [...state, action.payload];
 
     case 'removeItem':
