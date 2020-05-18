@@ -22,7 +22,11 @@ class Carrinho extends Component {
           {`Voce tem ${quantity} itens no carrinho!`}
         </p>
         {quantity !== 0 &&
-          cart.map((product) => <CartCard key={product.id} product={product} />)}
+          cart.map((product) => <CartCard key={product.id} product={product} />) &&
+          <Link to={{ pathname: '/checkout', cart }}>
+            <button data-testid="checkout-products"> Finalizar Compra</button>
+          </Link>
+        }
         {quantity === 0 &&
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
       </div>
