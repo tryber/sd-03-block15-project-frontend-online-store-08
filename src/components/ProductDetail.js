@@ -67,8 +67,6 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const { location: { state } } = this.props;
-
     return (
       <div>
         <Link to="/">Voltar</Link>
