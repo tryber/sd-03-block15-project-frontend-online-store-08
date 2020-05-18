@@ -8,7 +8,7 @@ class Checkout extends React.Component {
   }
 
   message() {
-    console.log('Obrigado Pela Compra. Volte Sempre!');
+    this.console.log('Obrigado Pela Compra. Volte Sempre!');
   }
 
   render() {
