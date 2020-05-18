@@ -11,38 +11,74 @@ class ProductDetail extends Component {
     addItem(product);
   }
 
+  addTitleAndPrice() {
+    const { location: { state } } = this.props;
+    return (
+      <div>
+        <h3
+          data-testid="product-detail-name"
+        >
+          {state.title}
+          <br />
+          {`R$${state.price.toFixed(2)}`}
+        </h3>
+      </div>
+    );
+  }
+
+  addCartImg() {
+    const { location: { state } } = this.props;
+
+    return (
+      <div>
+        <img
+          src={state.thumbnail}
+          alt={state.title}
+        />
+      </div>
+    );
+  }
+
+  addCartTech() {
+    const { location: { state } } = this.props;
+
+    return (
+      <div>
+        <h5>Especificações técnicas</h5>
+        <p>
+          {state.condition}
+        </p>
+      </div>
+    );
+  }
+
+  addCartBtn() {
+    const { location: { state } } = this.props;
+
+    return (
+      <button
+        data-testid="product-add-to-cart"
+        onClick={() => this.addItemToCart(state)}
+        type="button"
+      >
+        Adicionar ao carrinho
+      </button>
+    );
+  }
+
   render() {
     const { location: { state } } = this.props;
 
     return (
       <div>
         <Link to="/">Voltar</Link>
-        <div>
-          <h3 data-testid="product-detail-name">
-            {state.title}
-            <br />
-            {state.price}
-          </h3>
-        </div>
-        <div>
-          <img src={state.thumbnail} alt={state.title} />
-        </div>
-        <div>
-          <h5>Especificações técnicas</h5>
-          <p>
-            {state.condition}
-          </p>
-        </div>
+        {this.addTitleAndPrice()}
+        {this.addCartImg()}
+        {this.addCartTech()}
         <div>
           <input type="textArea" />
         </div>
-        <button
-          data-testid="product-add-to-cart"
-          onClick={() => this.addItemToCart(state)}
-          type="button"
-        >
-          Adicionar ao carrinho
-        </button>
+        {this.addCartBtn()}
       </div>
     );
   }
