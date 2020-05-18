@@ -26,8 +26,8 @@ class Carrinho extends Component {
           Quantidade: {this.state.quantity}
         </div>
         <button data-testid="shopping-cart-button"> Comprar mais</button>
-        <Link to={{pathname:"/checkout", state}}>
-        <button data-testid="checkout-products"> Finalizar Compra</button>
+        <Link to={{ pathname: '/checkout', state }}>
+          <button data-testid="checkout-products"> Finalizar Compra</button>
         </Link>
       </div>
     );
