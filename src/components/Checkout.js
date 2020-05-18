@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
-    this.message = this.message.bind(this);
+    this.message.bind(this);
   }
 
   message() {
     console.log('Obrigado Pela Compra. Volte Sempre!');
   }
+
   render() {
     const { location: { state } } = this.props;
     return (
@@ -26,7 +27,7 @@ class Checkout extends React.Component {
           <label htmlFor="cpf">CPF:</label><br />
           <input type="text" name="cpf" data-testid="checkout-cpf" maxLength="11" required /><br />
           <label htmlFor="phone">Telefone:</label><br />
-          <input 
+          <input
             type="text" name="phone" data-testid="checkout-phone"
             maxLength="11" required
           /><br />
