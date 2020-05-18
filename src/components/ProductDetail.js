@@ -70,7 +70,7 @@ class ProductDetail extends Component {
     return (
       <div>
         <Link to="/">Voltar</Link>
-        <span> </span>
+        <span>&nbsp;</span>
         <Link
           data-testid="shopping-cart-button"
           to="/carrinho"
