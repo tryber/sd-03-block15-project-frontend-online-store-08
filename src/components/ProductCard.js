@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from './Redux/actions';
 
 class ProductCard extends Component {
+  addItemToCart() {
+    console.log('a');
+  }
+
   render() {
     const { product, cart } = this.props;
+    console.log(this.props)
 
     return (
       <div data-testid="product">
@@ -20,18 +28,18 @@ class ProductCard extends Component {
           Mais detalhes
         </Link>
         <br />
-        <Link
+        <button
           data-testid="product-add-to-cart"
-          to={{
-            pathname: '/carrinho',
-            state: [...cart, product],
-          }}
+          onClick={() => this.addItemToCart()}
+          type="button"
         >
           Adicionar ao carrinho
-        </Link>
+        </button>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
 
 export default ProductCard;

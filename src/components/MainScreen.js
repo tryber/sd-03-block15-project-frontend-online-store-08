@@ -6,12 +6,12 @@ import Categories from './Categories';
 import ProductCard from './ProductCard';
 import * as Api from '../services/api';
 
-export class MainScreen extends React.Component {
+class MainScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      cart: [],
+      cart: props.cart,
       firstTime: true,
       products: [],
     };
@@ -24,10 +24,10 @@ export class MainScreen extends React.Component {
   }
 
   createCart() {
-    const { location: { state } } = this.props;
+    const { cart } = this.props;
 
-    if (state) {
-      this.setState({ cart: state });
+    if (cart) {
+      this.setState({ cart });
     }
   }
 

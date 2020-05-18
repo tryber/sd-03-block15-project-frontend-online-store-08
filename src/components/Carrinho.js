@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CartCard from './CartCard';
 
-export class Carrinho extends Component {
+class Carrinho extends Component {
   render() {
     const { location: { state } } = this.props;
 
