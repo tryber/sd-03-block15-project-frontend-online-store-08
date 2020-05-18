@@ -25,6 +25,10 @@ class MainScreen extends React.Component {
     this.searchApi();
   }
 
+  componentWillUnmount() {
+    
+  }
+
   searchApi() {
     const { categoryId, query } = this.state;
 
