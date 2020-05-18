@@ -21,7 +21,11 @@ class ProductCard extends Component {
           Mais detalhes
         </Link>
         <br />
-        <CartButton cart={[...cart, product]} />
+        <CartButton
+          data-testid="product-add-to-cart"
+          cart={cart}
+          item={product}
+        />
         <Link
           data-testid="product-add-to-cart"
           to={{

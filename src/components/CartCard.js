@@ -16,7 +16,7 @@ class ProductCard extends Component {
         <p
           data-testid="shopping-cart-product-quantity"
         >
-          {product.quantity}
+          {product.available_quantity}
         </p>
       </div>
     );
