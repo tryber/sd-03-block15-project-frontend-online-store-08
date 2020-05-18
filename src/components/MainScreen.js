@@ -28,11 +28,11 @@ class MainScreen extends React.Component {
     const { categoryId, searchText } = this.state;
 
     if (text) {
-      this.setState({ searchText: text });
+      this.setState({ searchText: text },this.searchApi(categoryId, searchText));
     }
 
     if (id) {
-      this.setState({ categoryId: id });
+      this.setState(()=>({ categoryId: id }));
     }
 
     this.searchApi(categoryId, searchText);
