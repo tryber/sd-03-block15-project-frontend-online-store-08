@@ -11,7 +11,6 @@ class MainScreen extends React.Component {
     super(props);
 
     this.state = {
-      cart: props.cart,
       categoryId: '',
       firstTime: true,
       products: [],
@@ -20,6 +19,10 @@ class MainScreen extends React.Component {
 
     this.handleCategory = this.handleCategory.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.searchApi();
   }
 
   searchApi() {
@@ -31,12 +34,10 @@ class MainScreen extends React.Component {
 
   handleCategory(categoryId) {
     this.setState({ firstTime: false, categoryId });
-    this.searchApi();
   }
 
   handleSearch(query) {
     this.setState({ firstTime: false, query });
-    this.searchApi();
   }
 
   render() {
