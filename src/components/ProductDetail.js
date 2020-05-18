@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from './Redux/actions';
+import StarRating from './StarRating';
 
 class ProductDetail extends Component {
   addItemToCart(product) {
@@ -81,7 +82,7 @@ class ProductDetail extends Component {
         {this.addCartImg()}
         {this.addCartTech()}
         <div>
-          <input type="textArea" />
+          <StarRating id={this.props.location.pathname} />
         </div>
         {this.addCartBtn()}
       </div>
