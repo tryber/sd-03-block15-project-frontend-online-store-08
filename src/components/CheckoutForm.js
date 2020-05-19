@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class CheckoutForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick.bind(this);
+  }
+  handleClick() {
+    const { onClick } = this.props;
+    onClick();
+  }
+
   render() {
     return (
       <div>
@@ -21,7 +30,7 @@ class CheckoutForm extends React.Component {
           <input type="text" name="cep" data-testid="checkout-cep" maxLength="8" required /><br />
           <label htmlFor="address">Endereço:</label><br />
           <input type="textArea" name="address" data-testid="checkout-address" required /><br />
-          <Link to="/"><button type="button" onClick={() => this.complete()}>Pagar</button></Link>
+          <Link to="/"><button type="button" onClick={() => this.handleClick()}>Pagar</button></Link>
         </form>
       </div>
     );
