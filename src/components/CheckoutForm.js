@@ -30,8 +30,8 @@ class CheckoutForm extends React.Component {
           <input type="text" name="cep" data-testid="checkout-cep" maxLength="8" required /><br />
           <label htmlFor="address">Endereço:</label><br />
           <input type="textArea" name="address" data-testid="checkout-address" required /><br />
-          <Link
-            to="/"><button type="button" onClick={() => this.handleClick()}>Pagar</button>
+          <Link to="/">
+            <button type="button" onClick={() => this.handleClick()}>Pagar</button>
           </Link>
         </form>
       </div>
