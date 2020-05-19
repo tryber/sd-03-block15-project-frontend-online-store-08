@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CheckoutList from './CheckoutList';
 import CheckoutTotal from './CheckoutTotal';
 import CheckoutForm from './CheckoutForm';
