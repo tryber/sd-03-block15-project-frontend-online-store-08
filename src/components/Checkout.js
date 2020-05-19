@@ -24,7 +24,7 @@ class Checkout extends React.Component {
             <CheckoutList products={cart} />{<p>Quantidade: {quantity}</p>}
             <p>Valor Total:</p><CheckoutTotal products={cart} />
           </div>
-          <CheckoutForm onClick={() => this.complete}/>
+          <CheckoutForm onClick={() => this.complete} />
         </div>
         }
       </div>
