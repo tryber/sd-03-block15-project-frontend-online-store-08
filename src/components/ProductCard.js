@@ -10,6 +10,7 @@ class ProductCard extends Component {
 
     return (
       <div data-testid="product">
+        {product.shipping.free_shipping && <p data-testid="free-shipping">Free shipping</p>}
         <h3>{product.title}</h3>
         <img src={product.thumbnail} alt="thumbnail" />
         <p>{`R$${Number(product.price).toFixed(2)}`}</p>
