@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from './Redux/actions';
 import CartCard from './CartCard';
 
 class Carrinho extends Component {
@@ -44,6 +42,6 @@ class Carrinho extends Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
+
 const mapStateToProps = (state) => ({ cart: state.products, quantity: state.quantity });
-export default connect(mapStateToProps, mapDispatchToProps)(Carrinho);
+export default connect(null, mapStateToProps)(Carrinho);
