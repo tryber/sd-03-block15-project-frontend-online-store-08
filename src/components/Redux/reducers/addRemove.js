@@ -21,7 +21,26 @@ export default function AddRemove(state = { products: [], quantity: 0 }, action)
         products: newProducts,
         quantity: counter,
       };
+    case 'incrementItem':
+      counter += 1;
+      if (newProduct.quantity <= newProduct.available_quantity) {
+        newProduct.quantity += 1;
+        return {
+          ...state,
+          products: newProducts,
+          quantity: counter,
+        };
+      }
+      break;
 
+    case 'decrementItem':
+      counter -= 1;
+      newProduct.quantity -= 1;
+      return {
+        ...state,
+        products: newProducts,
+        quantity: counter,
+      };
     default:
       return state;
   }
