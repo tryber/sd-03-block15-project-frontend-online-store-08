@@ -44,4 +44,4 @@ class Carrinho extends Component {
 }
 
 const mapStateToProps = (state) => ({ cart: state.products, quantity: state.quantity });
-export default connect(null, mapStateToProps)(Carrinho);
+export default connect(mapStateToProps)(Carrinho);
