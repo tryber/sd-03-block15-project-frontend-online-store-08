@@ -23,8 +23,15 @@ export default function reducer(state = { products: [], quantity: 0 }, action) {
       };
 
     case 'incrementItem':
-      counter += 1;
-      newProduct.quantity += 1;
+      if (newProduct.quantity < newProduct.available_quantity) {
+        counter += 1;
+        newProduct.quantity += 1;
+        return {
+          ...state,
+          products: newProducts,
+          quantity: counter,
+        };
+      }
       return {
         ...state,
         products: newProducts,
