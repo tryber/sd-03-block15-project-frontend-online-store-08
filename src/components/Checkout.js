@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import CheckoutList from './CheckoutList';
 import CheckoutTotal from './CheckoutTotal';
 import CheckoutForm from './CheckoutForm';
@@ -7,7 +8,7 @@ class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = { fullfill: false };
-    this.complete.bind(this);
+    this.complete = this.complete.bind(this);
   }
 
   complete() {
@@ -15,21 +16,26 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { location: { cart, quantity } } = this.props;
+    const { cart, quantity } = this.props;
     return (
       <div>
-        {quantity &&
+        {quantity && (
         <div>
           <div>
-            <CheckoutList products={cart} />{<p>Quantidade: {quantity}</p>}
-            <p>Valor Total:</p><CheckoutTotal products={cart} />
+            <CheckoutList products={cart} />
+            <p>
+              {`Quantidade: ${quantity}`}
+            </p>
+            <p>Valor Total:</p>
+            <CheckoutTotal products={cart} />
           </div>
           <CheckoutForm onClick={() => this.complete} />
         </div>
-        }
+        )}
       </div>
     );
   }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => ({ cart: state.products, quantity: state.quantity });
+export default connect(mapStateToProps)(Checkout);

@@ -68,6 +68,7 @@ class ProductDetail extends Component {
   }
 
   render() {
+    const { location: { pathname } } = this.props;
     return (
       <div>
         <Link to="/">Voltar</Link>
@@ -82,7 +83,7 @@ class ProductDetail extends Component {
         {this.addCartImg()}
         {this.addCartTech()}
         <div>
-          <StarRating id={this.props.location.pathname} />
+          <StarRating id={pathname} />
         </div>
         {this.addCartBtn()}
       </div>

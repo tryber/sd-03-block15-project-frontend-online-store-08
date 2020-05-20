@@ -1,14 +1,31 @@
 let counter = 0;
 
 export default function reducer(state = { products: [], quantity: 0 }, action) {
+  const hasItem = state.products.findIndex((a) => a.id === action.payload.id);
+  const newProducts = state.products;
+  const newProduct = action.payload;
+
   switch (action.type) {
     case 'addItem':
       counter += 1;
-      return { ...state, products: [...state.products, action.payload], quantity: counter };
+      newProduct.quantity = 1;
+      if (hasItem === -1) {
+        return {
+          ...state,
+          products: [...state.products, action.payload],
+          quantity: counter,
+        };
+      }
+      newProducts[hasItem].quantity += 1;
+      return {
+        ...state,
+        products: newProducts,
+        quantity: counter,
+      };
 
     case 'removeItem':
       counter -= 1;
-      return state.products.filter((e) => e.product.id !== action.payload.id);
+      return state.products.filter((e) => e.id !== action.payload.id);
 
     default:
       return state;
