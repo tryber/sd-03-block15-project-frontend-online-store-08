@@ -23,11 +23,15 @@ class MainScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isMounted: true });
+    this.mountComponent();
   }
 
   componentWillUnmount() {
     this.setState({ isMounted: false });
+  }
+
+  mountComponent() {
+    this.setState({ isMounted: true });
   }
 
   handleCategory(categId) {
