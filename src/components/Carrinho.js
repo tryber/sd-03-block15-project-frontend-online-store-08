@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as Actions from './Redux/actions';
 import CartCard from './CartCard';
 
 class Carrinho extends Component {
@@ -13,6 +15,13 @@ class Carrinho extends Component {
     });
     return (
       <div>{Number(price).toFixed(2)}</div>
+    );
+  }
+
+  renderProducts() {
+    const { cart } = this.props;
+    return (
+      cart.map((product) => <CartCard key={product.id} product={product} />)
     );
   }
 
@@ -30,8 +39,8 @@ class Carrinho extends Component {
         >
           {`Voce tem ${quantity} itens no carrinho!`}
         </p>
-        {quantity !== 0 && cart.map((product) => <CartCard key={product.id} product={product} />)}
         {quantity === 0 && <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+        {quantity !== 0 && this.renderProducts()}
         {quantity !== 0 && (
           <Link data-testid="checkout-products" to="/checkout">Finalizar compra</Link>
         )}
@@ -40,6 +49,6 @@ class Carrinho extends Component {
     );
   }
 }
-
+const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
 const mapStateToProps = (state) => ({ cart: state.products, quantity: state.quantity });
-export default connect(mapStateToProps)(Carrinho);
+export default connect(mapStateToProps, mapDispatchToProps)(Carrinho);
