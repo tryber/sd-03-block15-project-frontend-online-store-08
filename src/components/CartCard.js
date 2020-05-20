@@ -15,7 +15,7 @@ class ProductCard extends Component {
         >
           Add
         </button>
-        <p>{product.quantity}</p>
+        <p data-testid="shopping-cart-product-quantity">{product.quantity}</p>
         <button
           data-testid="product-decrease-quantity"
           onClick={() => decrementItem(product)}

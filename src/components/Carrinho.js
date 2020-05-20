@@ -33,11 +33,7 @@ class Carrinho extends Component {
         <Link to="/">
           Voltar
         </Link>
-        <p
-          data-testid="shopping-cart-product-quantity"
-        >
-          {quantity}
-        </p>
+        <p>{quantity}</p>
         {quantity === 0 && <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
         {this.renderProducts()}
         {quantity !== 0 && (
