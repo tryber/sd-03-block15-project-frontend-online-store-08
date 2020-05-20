@@ -1,11 +1,5 @@
-import { combineReducers, createStore } from 'redux';
-import AddRemove from './reducers/addRemove';
-import inDeCrement from './reducers/inDeCrement';
-
-const reducer = combineReducers({
-  AddRemove,
-  inDeCrement,
-});
+import { createStore } from 'redux';
+import reducer from './reducer';
 
 const store = createStore(reducer);
 

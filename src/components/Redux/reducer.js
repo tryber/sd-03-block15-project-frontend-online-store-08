@@ -1,6 +1,6 @@
 let counter = 0;
 
-export default function AddRemove(state = { products: [], quantity: 0 }, action) {
+export default function reducer(state = { products: [], quantity: 0 }, action) {
   const newProducts = state.products;
   const newProduct = action.payload;
   const hasItem = state.products.findIndex((a) => a.id === action.payload.id);
