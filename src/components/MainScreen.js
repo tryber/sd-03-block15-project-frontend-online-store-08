@@ -53,7 +53,6 @@ class MainScreen extends React.Component {
   render() {
     const { firstTime, products } = this.state;
     const { cart, quantity } = this.props;
-    console.log(this.props)
 
     return (
       <div className="App">
