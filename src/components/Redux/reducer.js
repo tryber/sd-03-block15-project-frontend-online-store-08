@@ -27,6 +27,20 @@ export default function reducer(state = { products: [], quantity: 0 }, action) {
       counter -= 1;
       return state.products.filter((e) => e.id !== action.payload.id);
 
+    case 'incrementItem':
+      newProducts[hasItem].quantity += 1;
+      return {
+        ...state,
+        products: newProducts,
+      };
+
+    case 'decrementItem':
+      newProducts[hasItem].quantity -= 1;
+      return {
+        ...state,
+        products: newProducts,
+      };
+
     default:
       return state;
   }

@@ -6,12 +6,6 @@ import * as Actions from './Redux/actions';
 import StarRating from './StarRating';
 
 class ProductDetail extends Component {
-  addItemToCart(product) {
-    const { addItem } = this.props;
-
-    addItem(product);
-  }
-
   addTitleAndPrice() {
     const { location: { state } } = this.props;
     return (
@@ -55,11 +49,12 @@ class ProductDetail extends Component {
 
   addCartBtn() {
     const { location: { state } } = this.props;
+    const { addItem } = this.props;
 
     return (
       <button
         data-testid="product-detail-add-to-cart"
-        onClick={() => this.addItemToCart(state)}
+        onClick={() => addItem(state)}
         type="button"
       >
         Adicionar ao carrinho

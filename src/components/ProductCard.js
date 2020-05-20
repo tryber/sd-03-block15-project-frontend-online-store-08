@@ -5,14 +5,8 @@ import { connect } from 'react-redux';
 import * as Actions from './Redux/actions';
 
 class ProductCard extends Component {
-  addItemToCart(product) {
-    const { addItem } = this.props;
-
-    addItem(product);
-  }
-
   render() {
-    const { product } = this.props;
+    const { addItem, product } = this.props;
 
     return (
       <div data-testid="product">
@@ -31,7 +25,7 @@ class ProductCard extends Component {
         <br />
         <button
           data-testid="product-add-to-cart"
-          onClick={() => this.addItemToCart(product)}
+          onClick={() => addItem(product)}
           type="button"
         >
           Adicionar ao carrinho

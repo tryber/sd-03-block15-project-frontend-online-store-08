@@ -11,3 +11,17 @@ export function removeItem(payload) {
     payload,
   };
 }
+
+export function incrementItem(payload) {
+  return {
+    type: 'incrementItem',
+    payload,
+  };
+}
+
+export function decrementItem(payload) {
+  return {
+    type: 'decrementItem',
+    payload,
+  };
+}
