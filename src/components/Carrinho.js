@@ -14,7 +14,7 @@ class Carrinho extends Component {
       if (e.quantity === 1) price += e.price;
     });
     return (
-      <div>{Number(price).toFixed(2)}</div>
+      <div>{`R$${Number(price).toFixed(2)}`}</div>
     );
   }
 
@@ -26,8 +26,7 @@ class Carrinho extends Component {
   }
 
   render() {
-    const { cart, quantity } = this.props;
-    console.log(cart);
+    const { quantity } = this.props;
 
     return (
       <div>
@@ -37,10 +36,10 @@ class Carrinho extends Component {
         <p
           data-testid="shopping-cart-product-quantity"
         >
-          {`Voce tem ${quantity} itens no carrinho!`}
+          {quantity}
         </p>
         {quantity === 0 && <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
-        {quantity !== 0 && this.renderProducts()}
+        {this.renderProducts()}
         {quantity !== 0 && (
           <Link data-testid="checkout-products" to="/checkout">Finalizar compra</Link>
         )}

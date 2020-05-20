@@ -1,10 +1,9 @@
 let counter = 0;
 
 export default function reducer(state = { products: [], quantity: 0 }, action) {
-  const hasItem = state.products.findIndex((a) => a.id === action.payload.id);
   const newProducts = state.products;
   const newProduct = action.payload;
-
+  const hasItem = state.products.findIndex((a) => a.id === action.payload.id);
   switch (action.type) {
     case 'addItem':
       counter += 1;
@@ -12,7 +11,7 @@ export default function reducer(state = { products: [], quantity: 0 }, action) {
       if (hasItem === -1) {
         return {
           ...state,
-          products: [...state.products, action.payload],
+          products: [...state.products, newProduct],
           quantity: counter,
         };
       }
@@ -24,17 +23,21 @@ export default function reducer(state = { products: [], quantity: 0 }, action) {
       };
 
     case 'incrementItem':
-      newProducts[hasItem].quantity += 1;
+      counter += 1;
+      newProduct.quantity += 1;
       return {
         ...state,
         products: newProducts,
+        quantity: counter,
       };
 
     case 'decrementItem':
-      newProducts[hasItem].quantity -= 1;
+      counter -= 1;
+      newProduct.quantity -= 1;
       return {
         ...state,
         products: newProducts,
+        quantity: counter,
       };
 
     default:
