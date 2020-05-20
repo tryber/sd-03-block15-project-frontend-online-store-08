@@ -63,7 +63,7 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const { location: { pathname } } = this.props;
+    const { location: { pathname }, quantity } = this.props;
     return (
       <div>
         <Link to="/">Voltar</Link>
@@ -74,6 +74,7 @@ class ProductDetail extends Component {
         >
           Carrinho
         </Link>
+        <p data-testid="shopping-cart-size">{quantity}</p>
         {this.addTitleAndPrice()}
         {this.addCartImg()}
         {this.addCartTech()}
@@ -86,5 +87,6 @@ class ProductDetail extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({ quantity: state.quantity });
 const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
-export default connect(null, mapDispatchToProps)(ProductDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
