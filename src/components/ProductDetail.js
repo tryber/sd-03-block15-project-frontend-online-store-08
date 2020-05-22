@@ -6,12 +6,6 @@ import * as Actions from './Redux/actions';
 import StarRating from './StarRating';
 
 class ProductDetail extends Component {
-  addItemToCart(product) {
-    const { addItem } = this.props;
-
-    addItem(product);
-  }
-
   addTitleAndPrice() {
     const { location: { state } } = this.props;
     return (
@@ -55,11 +49,12 @@ class ProductDetail extends Component {
 
   addCartBtn() {
     const { location: { state } } = this.props;
+    const { addItem } = this.props;
 
     return (
       <button
         data-testid="product-detail-add-to-cart"
-        onClick={() => this.addItemToCart(state)}
+        onClick={() => addItem(state)}
         type="button"
       >
         Adicionar ao carrinho
@@ -68,6 +63,7 @@ class ProductDetail extends Component {
   }
 
   render() {
+    const { location: { pathname }, quantity } = this.props;
     return (
       <div>
         <Link to="/">Voltar</Link>
@@ -78,11 +74,12 @@ class ProductDetail extends Component {
         >
           Carrinho
         </Link>
+        <p data-testid="shopping-cart-size">{quantity}</p>
         {this.addTitleAndPrice()}
         {this.addCartImg()}
         {this.addCartTech()}
         <div>
-          <StarRating id={this.props.location.pathname} />
+          <StarRating id={pathname} />
         </div>
         {this.addCartBtn()}
       </div>
@@ -90,5 +87,6 @@ class ProductDetail extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({ quantity: state.quantity });
 const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
-export default connect(null, mapDispatchToProps)(ProductDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

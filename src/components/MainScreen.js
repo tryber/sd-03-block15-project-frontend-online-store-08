@@ -11,8 +11,9 @@ class MainScreen extends React.Component {
     super(props);
 
     this.state = {
-      categoryId: '',
+      categId: '',
       firstTime: true,
+      isMounted: false,
       products: [],
       query: '',
     };
@@ -21,20 +22,37 @@ class MainScreen extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleCategory(categoryId) {
-    const { query } = this.state;
-    Api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ categoryId, products: result.results }));
+  componentDidMount() {
+    this.mountComponent();
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false });
+  }
+
+  mountComponent() {
+    this.setState({ isMounted: true });
+  }
+
+  handleCategory(categId) {
+    const { isMounted, query } = this.state;
+    Api.getProductsFromCategoryAndQuery(categId, query)
+      .then((result) => {
+        if (isMounted) this.setState({ categId, firstTime: false, products: result.results });
+      });
   }
 
   handleSearch(query) {
-    const { categoryId } = this.state;
-    Api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ products: result.results, query }));
+    const { categId, isMounted } = this.state;
+    Api.getProductsFromCategoryAndQuery(categId, query)
+      .then((result) => {
+        if (isMounted) this.setState({ firstTime: false, products: result.results, query });
+      });
   }
 
   render() {
-    const { cart, firstTime, products } = this.state;
+    const { firstTime, products } = this.state;
+    const { cart, quantity } = this.props;
 
     return (
       <div className="App">
@@ -44,6 +62,7 @@ class MainScreen extends React.Component {
         >
           Carrinho
         </Link>
+        <p data-testid="shopping-cart-size">{quantity}</p>
         <SearchBar callback={this.handleSearch} />
         <Categories callback={this.handleCategory} />
         {firstTime && (
@@ -59,5 +78,5 @@ class MainScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ cart: state });
+const mapStateToProps = (state) => ({ cart: state, quantity: state.quantity });
 export default connect(mapStateToProps)(MainScreen);

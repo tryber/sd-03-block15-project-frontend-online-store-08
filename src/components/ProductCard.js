@@ -5,20 +5,15 @@ import { connect } from 'react-redux';
 import * as Actions from './Redux/actions';
 
 class ProductCard extends Component {
-  addItemToCart(product) {
-    const { addItem } = this.props;
-
-    addItem(product);
-  }
-
   render() {
-    const { product } = this.props;
+    const { addItem, product } = this.props;
 
     return (
       <div data-testid="product">
+        {product.shipping.free_shipping && <p data-testid="free-shipping">Free shipping</p>}
         <h3>{product.title}</h3>
         <img src={product.thumbnail} alt="thumbnail" />
-        <p>{product.price}</p>
+        <p>{`R$${Number(product.price).toFixed(2)}`}</p>
         <Link
           data-testid="product-detail-link"
           to={{
@@ -31,7 +26,7 @@ class ProductCard extends Component {
         <br />
         <button
           data-testid="product-add-to-cart"
-          onClick={() => this.addItemToCart(product)}
+          onClick={() => addItem(product)}
           type="button"
         >
           Adicionar ao carrinho

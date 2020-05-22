@@ -4,29 +4,40 @@ import { connect } from 'react-redux';
 import CartCard from './CartCard';
 
 class Carrinho extends Component {
+  cartTotal() {
+    const { cart } = this.props;
+    let price = 0;
+    cart.forEach((e) => {
+      if (e.quantity !== 1) price += e.price * e.quantity;
+      if (e.quantity === 1) price += e.price;
+    });
+    return (
+      <div>{`R$${Number(price).toFixed(2)}`}</div>
+    );
+  }
+
+  renderProducts() {
+    const { cart } = this.props;
+    return (
+      cart.map((product) => <CartCard key={product.id} product={product} />)
+    );
+  }
+
   render() {
-    const { cart, quantity } = this.props;
+    const { quantity } = this.props;
 
     return (
       <div>
         <Link to="/">
           Voltar
         </Link>
-        <p
-          data-testid="shopping-cart-product-quantity"
-        >
-          {`Voce tem ${quantity} itens no carrinho!`}
-        </p>
-        {quantity !== 0 &&
-          cart.map((product) => <CartCard key={product.id} product={product} />)
-        }
-        {quantity === 0 &&
-          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
-        {quantity !== 0 &&
-          <Link to={{ pathname: '/checkout', cart, quantity }}>
-            <button data-testid="checkout-products"> Finalizar Compra</button>
-          </Link>
-        }
+        <p>{quantity}</p>
+        {quantity === 0 && <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+        {this.renderProducts()}
+        {quantity !== 0 && (
+          <Link data-testid="checkout-products" to="/checkout">Finalizar compra</Link>
+        )}
+        {this.cartTotal()}
       </div>
     );
   }
