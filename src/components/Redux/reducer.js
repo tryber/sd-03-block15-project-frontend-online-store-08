@@ -23,7 +23,7 @@ const addItem = (state, action) => {
 const increment = (state, action) => {
   const newProducts = state.products;
   const newProduct = action.payload;
-  newProduct.quantity += 1;
+
   if (newProduct.quantity < newProduct.available_quantity) {
     newProduct.quantity += 1;
     return {
